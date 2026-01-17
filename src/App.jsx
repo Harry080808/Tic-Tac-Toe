@@ -9,7 +9,7 @@ const App = () => {
   function writePlayer(index){
     const newBoard = [...board];
     
-    if(newBoard[index] === ""){
+    if(!Winner && newBoard[index] === ""){
       setPlayer(player === "X" ? "O" : "X");
       newBoard[index] = player;
       setBoard(newBoard);
@@ -58,7 +58,7 @@ const App = () => {
         <div className='text-2xl font-medium text-fuchsia-500'>Player: {player}'s Turn</div>
         <div className=' bg-[#E5E7EB] border-[#9CA3AF] grid grid-cols-3 rounded-xl'>
           {board.map((cell,i) =>(
-            <div key={i} className='border-2 border-[#9CA3AF] text-6xl flex justify-center items-center h-25 w-25 font-bold' style={cell === "X" ? {color: "#2563EB"} : {color: "#DC2626"}} onClick={()=> writePlayer(i)}>{cell}</div>
+            <div key={i} className='border-2 border-[#9CA3AF] text-6xl flex justify-center items-center h-25 w-25 font-bold cursor-pointer' style={cell === "X" ? {color: "#2563EB"} : {color: "#DC2626"}} onClick={()=> writePlayer(i)}>{cell}</div>
           ))}
         </div>
         <div className='text-3xl font-bold text-pink-500 py-3.5 hidden' style={Winner ? {display:"block"} : {display:"none"}}>{Winner === "draw" ? "Match Draw!" : `Winner is ${Winner}`}</div>
